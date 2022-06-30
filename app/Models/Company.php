@@ -11,4 +11,12 @@ class Company extends Model
     protected $table = "companies";
     // Specify the columns that are fillable
     protected $fillable = ['name', 'address', 'email', 'website'];
+
+    public function contacts()
+    {
+        // We can omit the second argument as our naming convention is ok
+        // If second argument is not provided it's considered as
+        // '[firstArgumentModelNameInLowerCase]_id'
+        return $this->hasMany(Contact::class, 'company_id');
+    }
 }
