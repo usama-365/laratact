@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
+    use HasFactory;
+
     // Can override the table that is mapped with this model.
     protected $table = "companies";
     // Specify the columns that are fillable
@@ -14,6 +16,7 @@ class Company extends Model
 
     public function contacts()
     {
+
         // We can omit the second argument as our naming convention is ok
         // If second argument is not provided it's considered as
         // '[firstArgumentModelNameInLowerCase]_id'

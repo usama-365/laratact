@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
+    use hasFactory;
+
     protected $table = 'contacts';
 
     // Inverse relationship method to match with company

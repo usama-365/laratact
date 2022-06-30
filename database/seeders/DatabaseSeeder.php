@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         // Call method runs the given seeder class
-        $this->call(CompaniesTableSeeder::class);
+        $this->call([CompaniesTableSeeder::class, ContactsTableSeeder::class]);
+
     }
 }
