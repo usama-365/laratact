@@ -18,7 +18,7 @@ class CompaniesTableSeeder extends Seeder
     {
         define('RECORDS_TO_ADD', 50);
         // Remove any data
-        DB::table('companies')->truncate();
+        DB::table('companies')->delete();
         $faker = Faker::create(); // Create a new generator
         // Fill the companies associative array with sample records
         $companies = [];
