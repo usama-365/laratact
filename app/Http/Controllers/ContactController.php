@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Contact;
 
 class ContactController extends Controller
@@ -9,7 +10,9 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contact::query()->orderBy('first_name')->orderBy('last_name')->paginate(10);
-        return view('contacts.index', compact('contacts'));
+        $companies = Company::query()->orderBy('name')->get(['id', 'name']);
+        return view('contacts.index', array_merge(compact('contacts'), compact('companies')));
+
     }
 
     public function create()

@@ -15,12 +15,14 @@
                     <div class="col-lg-6"></div>
                     <div class="col-lg-6">
                         <div class="ml-auto d-flex">
-                                <select class="custom-select">
-                                    <option value="" selected>All Companies</option>
-                                    <option value="1">Company One</option>
-                                    <option value="2">Company Two</option>
-                                    <option value="3">Company Three</option>
-                                </select>
+                            <select class="custom-select">
+                                <option selected value="">All Companies</option>
+                                @if($companies)
+                                    @foreach($companies as $company)
+                                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
                             <div class="input-group ml-2">
                                 <input type="text" placeholder="Search..." aria-label="Search..." class="form-control">
                                 <div class="input-group-append">
@@ -46,21 +48,22 @@
                     </thead>
                     <tbody>
                     @foreach($contacts as $index => $contact)
-                    <tr>
-                        <td>{{ $index +  $contacts->firstItem() }}</td>
-                        <td>{{ $contact->first_name }}</td>
-                        <td>{{ $contact->last_name }}</td>
-                        <td>{{ $contact->email }}</td>
-                        <td>{{ $contact->company->name }}</td>
-                        <td>
-                            <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-sm btn-outline-primary rounded-circle" title="View"><i
-                                    class="fa fa-eye"></i></a>
-                            <a href="" class="btn btn-sm btn-outline-secondary rounded-circle" title="Edit"><i
-                                    class="fa fa-edit"></i></a>
-                            <a href="" class="btn btn-sm btn-outline-danger rounded-circle" title="Delete"><i
-                                    class="fa fa-close"></i></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $index +  $contacts->firstItem() }}</td>
+                            <td>{{ $contact->first_name }}</td>
+                            <td>{{ $contact->last_name }}</td>
+                            <td>{{ $contact->email }}</td>
+                            <td>{{ $contact->company->name }}</td>
+                            <td>
+                                <a href="{{ route('contacts.show', $contact->id) }}"
+                                   class="btn btn-sm btn-outline-primary rounded-circle" title="View"><i
+                                        class="fa fa-eye"></i></a>
+                                <a href="" class="btn btn-sm btn-outline-secondary rounded-circle" title="Edit"><i
+                                        class="fa fa-edit"></i></a>
+                                <a href="" class="btn btn-sm btn-outline-danger rounded-circle" title="Delete"><i
+                                        class="fa fa-close"></i></a>
+                            </td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>
