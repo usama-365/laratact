@@ -15,14 +15,12 @@
                     <div class="col-lg-6"></div>
                     <div class="col-lg-6">
                         <div class="ml-auto d-flex">
-                            <label>
                                 <select class="custom-select">
                                     <option value="" selected>All Companies</option>
                                     <option value="1">Company One</option>
                                     <option value="2">Company Two</option>
                                     <option value="3">Company Three</option>
                                 </select>
-                            </label>
                             <div class="input-group ml-2">
                                 <input type="text" placeholder="Search..." aria-label="Search..." class="form-control">
                                 <div class="input-group-append">
@@ -47,9 +45,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($contacts as $contact)
+                    @foreach($contacts as $index => $contact)
                     <tr>
-                        <td>{{ $contact->id }}</td>
+                        <td>{{ $index +  $contacts->firstItem() }}</td>
                         <td>{{ $contact->first_name }}</td>
                         <td>{{ $contact->last_name }}</td>
                         <td>{{ $contact->email }}</td>
@@ -66,6 +64,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $contacts->links() }}
             </div>
         </div>
     </div>
