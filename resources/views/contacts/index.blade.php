@@ -15,11 +15,10 @@
                     <div class="col-lg-6"></div>
                     <div class="col-lg-6">
                         <div class="ml-auto d-flex">
-                            <select class="custom-select">
-                                <option selected value="">All Companies</option>
+                            <select class="custom-select" id="filter_company_id" name="company_id">
                                 @if($companies)
-                                    @foreach($companies as $company)
-                                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                    @foreach($companies as $id => $name)
+                                        <option {{ $id == request('company_id') ? 'selected' : '' }} value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
                                 @endif
                             </select>

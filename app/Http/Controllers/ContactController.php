@@ -9,10 +9,13 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contacts = Contact::query()->orderBy('first_name')->orderBy('last_name')->paginate(10);
-        $companies = Company::query()->orderBy('name')->get(['id', 'name']);
+        $contacts_query = Contact::query()->orderBy('first_name')->orderBy('last_name');
+        $company_id = request('company_id');
+        if ($company_id)
+            $contacts_query->where('company_id', 'like', $company_id);
+        $contacts = $contacts_query->paginate(10);
+        $companies = Company::query()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
         return view('contacts.index', array_merge(compact('contacts'), compact('companies')));
-
     }
 
     public function create()
