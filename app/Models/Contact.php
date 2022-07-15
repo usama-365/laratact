@@ -10,6 +10,7 @@ class Contact extends Model
     use hasFactory;
 
     protected $table = 'contacts';
+    protected $fillable = ['first_name', 'last_name', 'phone', 'email', 'address', 'company_id'];
 
     // Inverse relationship method to match with company
     public function company()

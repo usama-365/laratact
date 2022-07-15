@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Contact;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
@@ -18,9 +19,23 @@ class ContactController extends Controller
         return view('contacts.index', array_merge(compact('contacts'), compact('companies')));
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+            'company_id' => 'required|exists:companies,id'
+        ]);
+        Contact::query()->create($request->all());
+        return redirect(route('contacts.index'))->with('message', 'Contact has been added successfully');
+    }
+
     public function create()
     {
-        return view('contacts.create');
+        $companies = Company::query()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
+        return view('contacts.create', compact('companies'));
     }
 
     public function show($id)

@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+@extends('layout.form')
 
-<h1>Add New Contact</h1>
+@section('title', 'Add Contact')
 
-
-
-</body>
-</html>

@@ -6,7 +6,7 @@
             <div class="card-header card-title bg-primary text-white">
                 <div class="d-flex align-items-center">
                     <h2 class="mb-0">All Contacts</h2>
-                    <div class="ml-auto"><a href="" class="btn btn-success"><i class="fa fa-plus-circle"></i> Add
+                    <div class="ml-auto"><a href="{{ route('contacts.create') }}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Add
                             New</a></div>
                 </div>
             </div>
@@ -33,6 +33,9 @@
                     </div>
                 </div>
 
+                @if(session('message'))
+                <div class="alert alert-success mt-3">{{ session('message') }}</div>
+                @endif
 
                 <table class="table-striped table table-hover mt-3 bg-white">
                     <thead>
